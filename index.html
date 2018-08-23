@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #a{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #dddddd;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            border-right: 100px solid transparent;
+            position: relative;
+            left: -100px;
+            filter:drop-shadow(100px 0px red)
+        }
+        #color{
+            width: 600px;
+            line-height: 60px;
+            margin: 100px auto;
+            text-align: center;
+        }
+        #color button,#random {
+            width: 100px;
+            outline: none;
+            border: none;
+            height:30px;
+            margin-right: 20px;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .t {
+            margin: 0 auto;
+            width: 400px;
+            text-align: center;
+        }
+        #random {
+            background: #000000
+        }
+    </style>
+</head>
+<body>
+    <div id="a">
+        <img id="img" src="./2.png" alt="">
+    </div>
+    <div id="color">
+        <p>
+            <button>black</button><button>red</button><button>green</button><button>blue</button><button>pink</button><button>gray</button>
+        </p>
+    </div>
+    <div class="t">
+        <button id='random'>random</button>
+    </div>
+<script>
+    var getRandomColor = function(){
+
+        return '#'+Math.floor(Math.random()*16777215).toString(16); 
+    }
+
+    var setColor = function (dom) {
+        dom.style.background = dom.innerHTML
+        return dom
+    }
+    let btn_list = document.querySelectorAll('#color button')
+    btn_list.forEach(el => {
+        setColor(el).onclick = function () {
+            img.style.filter = 'drop-shadow(100px 0px '+ this.innerHTML +')'
+        }
+    })
+
+    random.onclick = function () {
+        img.style.filter = 'drop-shadow(100px 0px '+ getRandomColor() +')'
+    }
+</script>
+</body>
+</html>
